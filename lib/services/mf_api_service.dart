@@ -44,7 +44,7 @@ class MFApiService {
       if (code != null && parts.length >= 4) {
         // Scheme row
         final name = parts[3].trim();
-        if (name.isEmpty) continue;
+        if (name.isEmpty || !_isDirectGrowth(name)) continue;
         schemes.add(Scheme(
           schemeCode: code,
           schemeName: name,
@@ -113,5 +113,13 @@ class MFApiService {
     return SchemeDetail.fromJson(
       jsonDecode(response.body) as Map<String, dynamic>,
     );
+  }
+
+  /// Keep only Direct Plan Growth schemes; exclude IDCW / Dividend variants.
+  static bool _isDirectGrowth(String name) {
+    final lower = name.toLowerCase();
+    return lower.contains('direct') &&
+        lower.contains('growth') &&
+        !lower.contains('idcw');
   }
 }
