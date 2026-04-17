@@ -60,4 +60,13 @@ class AppState extends ChangeNotifier {
     _comparison.clear();
     notifyListeners();
   }
+
+  // ── Dark mode ──────────────────────────────────────────────────────────────
+  bool _isDarkMode = false;
+  bool get isDarkMode => _isDarkMode;
+
+  void toggleDarkMode() {
+    _isDarkMode = !_isDarkMode;
+    notifyListeners();
+  }
 }

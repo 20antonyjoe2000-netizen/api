@@ -108,6 +108,13 @@ class _HomeScreenState extends State<HomeScreen>
               ),
             ),
           IconButton(
+            icon: Icon(
+              _appState.isDarkMode ? Icons.light_mode : Icons.dark_mode,
+            ),
+            tooltip: _appState.isDarkMode ? 'Light mode' : 'Dark mode',
+            onPressed: () => _appState.toggleDarkMode(),
+          ),
+          IconButton(
             icon: const Icon(Icons.flag_outlined),
             tooltip: 'Goal Planner',
             onPressed: () => Navigator.push(
